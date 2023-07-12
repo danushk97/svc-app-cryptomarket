@@ -1,0 +1,6 @@
+connexion==2.14.2
+requests==2.31.*
+
+# testing
+pytest==7.4.0
+pytest-cov==4.1.0
