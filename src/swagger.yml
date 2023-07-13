@@ -1,0 +1,29 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: crypto-currency market summary API.
+  contact:
+    name: Danush Kumar
+    email: danushk97@gmail.com
+servers:
+- url: /
+  description: Development server
+
+paths:
+  /health-check:
+    get:
+      operationId: src.controller.health.health_check
+      tags:
+      - Health Check
+      summary: Ensures the application's health
+      responses:
+        200:
+          description: Application is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: up
