@@ -7,6 +7,10 @@ from os import _exit, environ
 from dotenv import dotenv_values
 
 from src.constants import Constants
+from src.logs import get_logger
+
+
+_logger = get_logger(__name__)
 
 
 _REQUIRED_CONFIGS = [
@@ -37,14 +41,23 @@ class Config:
         """
         missing_configs = []
         config_dict = dotenv_values(f"{cls.FLASK_ENV}.env")
+
         if not config_dict:
+            _logger.critical(
+                "Aborting application start up due to empty configs."
+            )
             _exit(1)
 
-        for key, value in config_dict.items():
-            if key in _REQUIRED_CONFIGS and value is None:
+        for key in _REQUIRED_CONFIGS:
+            if key not in config_dict:
                 missing_configs.append(key)
+                continue
 
-            setattr(cls, key, value)
-        
+            setattr(cls, key, config_dict[key])
+
         if missing_configs:
+            _logger.critical(
+                "Aborting application start up due to missing "
+                f"configs {missing_configs}."
+            )
             _exit(1)
