@@ -16,7 +16,7 @@ def test_config_init_returns_none_if_all_required_configs_exists():
     ({}),
     ({'MARKET_SUMMARY_ENDPOINT': '/summary'})
 ])
-def test_config_init_exits_on_empty_or_missing_configs(monkeypatch, input):
+def test_config_init_exit_app_on_empty_or_missing_configs(monkeypatch, input):
     monkeypatch.setattr('src.config.dotenv_values', lambda x: {})
     with patch('src.config._exit') as mock_exit:
         assert Config.init() is None
