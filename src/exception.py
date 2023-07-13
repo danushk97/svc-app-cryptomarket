@@ -26,5 +26,5 @@ class AppException(Exception):
     detail: str = "Unknown error has occured"
     status : HTTPStatus = HTTPStatus.INTERNAL_SERVER_ERROR
     type: str = "about:blank"
-    _log_message: str = field(default="", repr=False, dict=False)
+    _log_message: str = field(default="", repr=False)
     
