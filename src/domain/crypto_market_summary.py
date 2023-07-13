@@ -1,4 +1,4 @@
-from dataclasses import dataclass, fields
+from dataclasses import dataclass, fields, asdict
 
 from src.constants import Constants
 
@@ -21,4 +21,7 @@ class CryptoMarketSummary:
                 for field in fields(cls)
             ]
         )
+    
+    def to_dict(self) -> dict:
+        return asdict(self)
     
