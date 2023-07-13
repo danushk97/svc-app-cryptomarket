@@ -44,6 +44,6 @@ def test_retrieve_all_market_summaries_returns_list_of_market_summaries(
     fake_repository
 ):
     service = CryptoMarketSummaryService(fake_repository)
-    data = service.retrieve_all_market_summary()
+    data = service.retrieve_all()
     assert len(data) == 1
     assert data[0] == CryptoMarketSummary.from_dict(market_summary_dict)
