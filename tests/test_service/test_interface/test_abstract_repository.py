@@ -13,7 +13,7 @@ class FakeRepo(AbstractRepository):
 
 
 def test_abstract_repo_raises_non_implemented_error():
-    fake_repo = FakeRepo('fake_data_source')
+    fake_repo = FakeRepo()
     
     with pytest.raises(NotImplementedError):
         fake_repo.list()
