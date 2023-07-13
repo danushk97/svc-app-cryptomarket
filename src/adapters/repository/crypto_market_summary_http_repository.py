@@ -18,8 +18,12 @@ class CryptoMarketSummaryHttpRepository(AbstractRepository):
     for interacting with the underlying data source.
     """
 
-    def __init__(self, http_client: HttpClient, base_url: str = None) -> None:
-        self.__http_client = http_client
+    def __init__(
+        self, 
+        http_client: HttpClient = None, 
+        base_url: str = None
+    ) -> None:
+        self.__http_client = http_client or HttpClient()
         self.__base_url = base_url or Config.BITTREX_SERVICE_BASE_URL
     
     def list(self) -> List[CryptoMarketSummary]:
