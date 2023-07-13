@@ -2,16 +2,21 @@ from requests.exceptions import RequestException
 
 
 class FakeResponse:
-    @staticmethod
-    def json():
+    def __init__(self, status_code=200) -> None:
+        self.status_code = status_code
+
+    def json(self):
         return {
             'data': 'mock'
         }
 
+    def raise_for_status(self):
+        return
+
 
 class FakeSuccessRequests:
     def get(url, params=None, **kwargs):
-        return FakeResponse
+        return FakeResponse()
 
 
 class FakeFailureRequests(FakeSuccessRequests):
