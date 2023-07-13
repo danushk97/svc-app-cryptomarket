@@ -26,7 +26,7 @@ def test_instantiate_crypto_market_summary_class_returns_instance_with_values():
     assert_values(crypto_market_summary, args)
 
 
-def test_from_dict_retuns_instance_with_provided_values():
+def test_from_dict_returns_instance_with_provided_values():
     market_summary_dict = {
         "symbol": "1ECO-BTC",
         "high": "0.000010130000",
@@ -39,4 +39,20 @@ def test_from_dict_retuns_instance_with_provided_values():
 
     crypto_market_summary = CryptoMarketSummary.from_dict(market_summary_dict)
     assert_values(crypto_market_summary, tuple(market_summary_dict.values()))
+
+
+def test_to_dict_given_instance_returns_dict():
+    market_summary_dict = {
+        "symbol": "1ECO-BTC",
+        "high": "0.000010130000",
+        "low": "0.000009550000",
+        "volume": "299.05366098",
+        "quoteVolume": "0.00286879",
+        "percentChange": "6.07",
+        "updatedAt": "2023-07-13T04:39:44.69Z"
+    }
+
+    crypto_market_summary = CryptoMarketSummary.from_dict(market_summary_dict)
+    result = crypto_market_summary.to_dict()
+    assert result == market_summary_dict
     
