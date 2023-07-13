@@ -16,8 +16,11 @@ class Constants:
     UPDATED_AT = "updated_at"
     PERCENT_CHANGE = "percent_change"
 
+    #  HTTP method
+    GET = "get"
+
     @staticmethod
     def snake_to_camel_case(value: str) -> str:
-        first_value_part, *value_parts = value.split('_')
+        first_value_part, *value_parts = value.split("_")
 
         return first_value_part + ''.join(value.title() for value in value_parts)
