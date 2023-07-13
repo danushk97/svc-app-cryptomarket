@@ -5,6 +5,7 @@ info:
   contact:
     name: Danush Kumar
     email: danushk97@gmail.com
+
 servers:
 - url: /
   description: Development server
@@ -27,3 +28,38 @@ paths:
                   status:
                     type: string
                     example: up
+  /crypto/markets/summaries:
+    get:
+      operationId: src.controller.crypto_market_summary.retrieve_all
+      tags:
+      - Crypto Market Summaries
+      summary: Get all available crypto-currency market summaries
+      responses:
+        200:
+          description: Successful retrieve operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/crypto_market_summary"
+
+components:
+  schemas:
+    crypto_market_summary:
+      type: object
+      properties:
+        symbol:
+          type: string
+        high:
+          type: string
+        low:
+          type: string
+        volume:
+          type: string
+        quote_volume:
+          type: string
+        percent_change:
+          type: string
+        updated_at:
+          type: string
