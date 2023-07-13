@@ -15,6 +15,6 @@ class FakeSuccessRequests:
 
 
 class FakeFailureRequests(FakeSuccessRequests):
-    def get(hostname, resouce_path, params=None, **kwargs):
+    def get(url, params=None, **kwargs):
         raise RequestException('Failed to fetch data')
     
