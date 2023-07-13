@@ -7,3 +7,10 @@ def test_http_get_returns_response_data_on_successful_request():
     assert data == {
         'data': 'mock'
     }
+
+
+def test_http_get_raises_app_exception_on_successful_request():
+    data = HttpClient(FakeFailureRequests).get('http://test.com', '/')
+    assert data == {
+        'data': 'mock'
+    }
