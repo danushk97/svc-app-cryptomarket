@@ -37,7 +37,6 @@ class Config:
         """
         missing_configs = []
         config_dict = dotenv_values(f"{cls.FLASK_ENV}.env")
-
         if not config_dict:
             _exit(1)
 
