@@ -18,6 +18,7 @@ class AppException(Exception):
         status (HTTPStatus): The HTTP status code.
         type (str): A URI that identifies the problem type or "about:blank"
     """
+    
     def __init__(
         self, 
         title: str = ErrorCode.INTERNAL_SERVER_ERROR.value,
