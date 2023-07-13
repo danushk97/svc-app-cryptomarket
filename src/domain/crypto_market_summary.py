@@ -1,4 +1,6 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, fields
+
+from src.constants import Constants
 
 
 @dataclass
@@ -10,4 +12,13 @@ class CryptoMarketSummary:
     quote_volume: str
     percent_change: str
     updated_at: str
+
+    @classmethod
+    def from_dict(cls, summary_dict: dict):
+        return cls(
+            *[
+                summary_dict[Constants.snake_to_camel_case(field.name)]
+                for field in fields(cls)
+            ]
+        )
     
