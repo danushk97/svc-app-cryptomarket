@@ -7,7 +7,11 @@ from urllib.parse import urljoin
 import requests
 
 from src.constants import Constants
-from src.exception import AppException
+from src.adapters.data_source.exception import ExternalServiceException
+from src.logs import get_logger
+
+
+_logger = get_logger(__name__)
 
 
 class HttpClient:
@@ -47,11 +51,27 @@ class HttpClient:
         params = params or {}
         data = data or {}
         
+        failed_log_message = f"[UNSUCCESSFUL EXTERNAL SERVICE CALL]: "
+
+        _logger.info(f"[STARTING EXTERNAL SERVICE CALL]: {url}")
+
         try:
             response = method(url, params=params, data=data, **kwargs)
-        except requests.RequestException as err:
-            raise AppException() from err
+            response.raise_for_status()
+        except requests.HTTPError as http_err:
+            _logger.error(
+                failed_log_message + f"{http_err}. {http_err.response.text}"
+            )
+            raise ExternalServiceException() from http_err
+        except requests.RequestException as req_err:
+            _logger.error(failed_log_message + f"{req_err}")
+
+            raise ExternalServiceException() from req_err
         
+        _logger.info(
+            f"[SUCCESSFUL EXTERNAL SERVICE CALL]: {response.status_code} {url}"
+        )
+
         return response.json()
 
     def get(
