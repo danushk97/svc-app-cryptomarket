@@ -21,4 +21,5 @@ def test_get_retrieve_crypto_market_summary_returns_list_of_market_summary():
     crypto_market_summary_list = CryptoMarketSummaryHttpRepository(
         mock_http_client
     ).list()
-    assert crypto_market_summary_list == [market_summary_dict]
+    assert len(crypto_market_summary_list) == 1
+    crypto_market_summary_list[0] == market_summary_dict
