@@ -46,6 +46,7 @@ class HttpClient:
         method = getattr(self.__proxy, http_method)
         params = params or {}
         data = data or {}
+        
         try:
             response = method(url, params=params, data=data, **kwargs)
         except requests.RequestException as err:
