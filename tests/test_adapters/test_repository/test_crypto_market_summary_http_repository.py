@@ -2,7 +2,7 @@ from unittest.mock import create_autospec
 
 from src.adapters.repository.crypto_market_summary_http_repository import \
     CryptoMarketSummaryHttpRepository
-from src.adapters.http_client import HttpClient
+from src.adapters.data_source.http_client import HttpClient
 
 
 def test_get_retrieve_crypto_market_summary_returns_list_of_market_summary():
