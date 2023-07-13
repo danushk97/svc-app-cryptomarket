@@ -30,6 +30,7 @@ class Constants:
     PROD = "prod"
 
     LOGGING_LEVEL = "LOGGING_LEVEL"
+    RESPONSE = "response"
 
     # Logging levels
     DEBUG = "DEBUG"
