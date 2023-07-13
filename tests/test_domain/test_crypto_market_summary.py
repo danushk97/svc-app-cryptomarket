@@ -51,8 +51,17 @@ def test_to_dict_given_instance_returns_dict():
         "percentChange": "6.07",
         "updatedAt": "2023-07-13T04:39:44.69Z"
     }
+    expected_summary_dict = {
+        "symbol": "1ECO-BTC",
+        "high": "0.000010130000",
+        "low": "0.000009550000",
+        "volume": "299.05366098",
+        "quote_volume": "0.00286879",
+        "percent_change": "6.07",
+        "updated_at": "2023-07-13T04:39:44.69Z"
+    }
 
     crypto_market_summary = CryptoMarketSummary.from_dict(market_summary_dict)
     result = crypto_market_summary.to_dict()
-    assert result == market_summary_dict
+    assert result == expected_summary_dict
     
