@@ -1,0 +1,49 @@
+from unittest.mock import create_autospec
+
+import pytest
+
+from src.adapters.repository.crypto_market_summary_http_repository import \
+    CryptoMarketSummaryHttpRepository
+from src.service.crypto_market_summary_service import CryptoMarketSummaryService
+from src.domain.crypto_market_summary import CryptoMarketSummary
+
+
+market_summary_dict = {
+    "symbol": "1ECO-BTC",
+    "high": "0.000010130000",
+    "low": "0.000009550000",
+    "volume": "299.05366098",
+    "quoteVolume": "0.00286879",
+    "percentChange": "6.07",
+    "updatedAt": "2023-07-13T04:39:44.69Z"
+}
+
+
+@pytest.fixture()
+def fake_repository():
+    fake_repo = create_autospec(
+        CryptoMarketSummaryHttpRepository, 
+        instance=True
+    )
+    args = (
+        "1ECO-BTC", 
+        "0.000010130000", 
+        "0.000009550000", 
+        "299.05366098", 
+        "0.00286879", 
+        "6.07", 
+        "2023-07-13T04:39:44.69Z"
+    )
+    fake_repo.list.return_value = [
+        CryptoMarketSummary.from_dict(market_summary_dict)
+    ]
+    yield fake_repo
+
+
+def test_retrieve_all_market_summaries_returns_list_of_market_summaries(
+    fake_repository
+):
+    service = CryptoMarketSummaryService(fake_repository)
+    data = service.retrieve_all_market_summary()
+    assert len(data) == 1
+    assert data[0] == CryptoMarketSummary.from_dict(market_summary_dict)
