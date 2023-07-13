@@ -6,6 +6,9 @@ from typing import Any
 
 
 class Constants:
+    """
+    The `Constants` holds the string constants that are used application wide.
+    """
 
     # CryptoMarketSummary domain attributes
     SYMBOL = "symbol"
@@ -34,6 +37,16 @@ class Constants:
 
     @staticmethod
     def snake_to_camel_case(value: str) -> str:
-        first_value_part, *value_parts = value.split("_")
+        """
+        Converts a string value to camelCase string values if the provided value
+        is in snake_case, if not returns the same value.
 
-        return first_value_part + "".join(value.title() for value in value_parts)
+        Args:
+            value (string): Any string value. Ex: user_id
+        
+        Returns:
+            str: CamelCased string value.
+        """
+        first_value, *value_parts = value.split("_")
+
+        return first_value + "".join(value.title() for value in value_parts)
