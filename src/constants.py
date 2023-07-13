@@ -19,15 +19,21 @@ class Constants:
     # HTTP method
     GET = "get"
 
-    # Flask env's
-    FLASK_ENV = 'FLASK_ENV'
-    TEST = 'test'
-    DEV = 'dev'
-    STAGE = 'stage'
-    PROD = 'prod'
+    # Flask env"s
+    FLASK_ENV = "FLASK_ENV"
+    TEST = "test"
+    DEV = "dev"
+    STAGE = "stage"
+    PROD = "prod"
+
+    LOGGING_LEVEL = "LOGGING_LEVEL"
+
+    # Logging levels
+    DEBUG = "DEBUG"
+    INFO = "INFO"
 
     @staticmethod
     def snake_to_camel_case(value: str) -> str:
         first_value_part, *value_parts = value.split("_")
 
-        return first_value_part + ''.join(value.title() for value in value_parts)
+        return first_value_part + "".join(value.title() for value in value_parts)

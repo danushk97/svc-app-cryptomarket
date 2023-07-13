@@ -1,5 +1,3 @@
-from os import environ
+from dotenv import load_dotenv
 
-
-environ['FLASK_ENV'] = 'test'
-environ['BITTREX_SERVICE_BASE_URL'] = 'http://test-bittrex.com'
+load_dotenv('test.env')
