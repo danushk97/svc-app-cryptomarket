@@ -7,7 +7,7 @@ from typing import Any
 
 class Constants:
 
-    #  CryptoMarketSummary domain attributes
+    # CryptoMarketSummary domain attributes
     SYMBOL = "symbol"
     HIGH = "high"
     LOW = "low"
@@ -16,8 +16,15 @@ class Constants:
     UPDATED_AT = "updated_at"
     PERCENT_CHANGE = "percent_change"
 
-    #  HTTP method
+    # HTTP method
     GET = "get"
+
+    # Flask env's
+    FLASK_ENV = 'FLASK_ENV'
+    TEST = 'test'
+    DEV = 'dev'
+    STAGE = 'stage'
+    PROD = 'prod'
 
     @staticmethod
     def snake_to_camel_case(value: str) -> str:
