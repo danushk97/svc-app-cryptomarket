@@ -14,11 +14,12 @@ class AppException(Exception):
 
     Attributes:
         title (str): A short, human-readable summary of the problem type.
-        detail (str): An human readable explanation specific to this occurrence of the problem.
+        detail (str): An human readable explanation specific to this 
+                      occurrence of the problem.
         status (HTTPStatus): The HTTP status code.
         type (str): A URI that identifies the problem type or "about:blank"
     """
-    
+
     def __init__(
         self, 
         title: str = ErrorCode.INTERNAL_SERVER_ERROR.value,
