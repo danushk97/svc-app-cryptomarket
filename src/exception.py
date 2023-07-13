@@ -2,11 +2,13 @@
 This module provides base exception class for the custom application exception.
 """
 
+from dataclasses import dataclass, field
 from http import HTTPStatus
 
 from src.error_codes import ErrorCode
 
 
+@dataclass
 class AppException(Exception):
     """
     The `AppException` class serves as a base class for custom exceptions
@@ -18,19 +20,11 @@ class AppException(Exception):
                       occurrence of the problem.
         status (HTTPStatus): The HTTP status code.
         type (str): A URI that identifies the problem type or "about:blank"
-    """
+    """ 
 
-    def __init__(
-        self, 
-        title: str = ErrorCode.INTERNAL_SERVER_ERROR.value,
-        detail: str = "Unknown error has occured",
-        status : HTTPStatus = HTTPStatus.INTERNAL_SERVER_ERROR,
-        type: str = "about:blank",
-        log_message: str = ''
-    ) -> None:
-        self.title = title
-        self.detail = detail
-        self.status = status
-        self.type = type
-        self.__log_message = log_message
+    title: str = ErrorCode.INTERNAL_SERVER_ERROR.value
+    detail: str = "Unknown error has occured"
+    status : HTTPStatus = HTTPStatus.INTERNAL_SERVER_ERROR
+    type: str = "about:blank"
+    _log_message: str = field(default="", repr=False, dict=False)
     
