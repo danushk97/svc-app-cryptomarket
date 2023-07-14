@@ -31,16 +31,16 @@ class Config:
     BITTREX_SERVICE_BASE_URL = None
     ALL_MARKETS_SUMMARY_ENDPOINT = None
     MARKET_SUMMARY_ENDPOINT = None
-    FLASK_ENV = environ.get(Constants.FLASK_ENV, Constants.DEV)
+    ENV = environ.get(Constants.ENV, Constants.DEV)
 
     @classmethod
     def init(cls) -> None:
         """
-        Loads the configs from `{FLASK_ENV}.env` and initialzes the
+        Loads the configs from `{ENV}.env` and initialzes the
         class level attributes. 
         """
         missing_configs = []
-        config_dict = dotenv_values(f"{cls.FLASK_ENV}.env")
+        config_dict = dotenv_values(f"{cls.ENV}.env")
 
         if not config_dict:
             _logger.critical(

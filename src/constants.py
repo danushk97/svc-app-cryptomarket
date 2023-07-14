@@ -23,7 +23,7 @@ class Constants:
     GET = "get"
 
     # Flask env"s
-    FLASK_ENV = "FLASK_ENV"
+    ENV = "ENV"
     TEST = "test"
     DEV = "dev"
     STAGE = "stage"
