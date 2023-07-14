@@ -20,7 +20,11 @@ def create_app():
     
     basedir = os.path.abspath(os.path.dirname(__file__))
     connex_app = connexion.App(__name__, specification_dir=basedir)
-    connex_app.add_api("swagger.yml", strict_validation=True)
+    connex_app.add_api(
+        "swagger.yml", 
+        strict_validation=True,
+        base_path="/v3"
+    )
 
     connex_app.app.register_error_handler(
         AppException, 

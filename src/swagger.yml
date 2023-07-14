@@ -1,13 +1,13 @@
 openapi: "3.0.0"
 info:
-  version: 1.0.0
+  version: v3
   title: crypto-currency market summary API.
   contact:
     name: Danush Kumar
     email: danushk97@gmail.com
 
 servers:
-- url: /
+- url: /v3
   description: Development server
 
 paths:
