@@ -16,7 +16,7 @@ def create_app():
     """
     Creates and configures flask app using connexion.
     """
-    Config.init()
+    Config.init()  # Loads and initializes the app configs.
     
     basedir = os.path.abspath(os.path.dirname(__file__))
     connex_app = connexion.App(__name__, specification_dir=basedir)
