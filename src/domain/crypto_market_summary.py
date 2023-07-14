@@ -17,7 +17,7 @@ class CryptoMarketSummary:
     def from_dict(cls, summary_dict: dict):
         return cls(
             *[
-                summary_dict[Constants.snake_to_camel_case(field.name)]
+                summary_dict.get(Constants.snake_to_camel_case(field.name), "")
                 for field in fields(cls)
             ]
         )
