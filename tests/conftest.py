@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 import pytest
 
 from src.app import create_app
@@ -30,7 +32,7 @@ def crypto_market_summary_instace():
 
 @pytest.fixture(scope="session")
 def snake_case_market_summary_dict():
-    return {
+    return OrderedDict({
         "symbol": "1ECO-BTC",
         "high": "0.000010130000",
         "low": "0.000009550000",
@@ -38,4 +40,17 @@ def snake_case_market_summary_dict():
         "quote_volume": "0.00286879",
         "percent_change": "6.07",
         "updated_at": "2023-07-13T04:39:44.69Z"
-    }
+    })
+
+
+@pytest.fixture(scope="session")
+def camel_case_market_summary_dict():
+    return OrderedDict({
+        "symbol": "1ECO-BTC",
+        "high": "0.000010130000",
+        "low": "0.000009550000",
+        "volume": "299.05366098",
+        "quoteVolume": "0.00286879",
+        "percentChange": "6.07",
+        "updatedAt": "2023-07-13T04:39:44.69Z"
+    })
