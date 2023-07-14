@@ -8,6 +8,12 @@ import logging
 from src.constants import Constants
 
 
+FORMATTER = logging.Formatter(
+    "%(asctime)s — %(levelname)s - %(name)s — %(funcName)s:%(lineno)d — "
+    "%(message)s"
+)
+
+
 def get_logger(name: str) -> logging.Logger:
     """
     Returns Logger instanace which can be use log.
@@ -24,6 +30,8 @@ def get_logger(name: str) -> logging.Logger:
         level = logging.DEBUG
     
     logger.setLevel(level)
-    logger.addHandler(logging.StreamHandler())
+    handler = logging.StreamHandler()
+    handler.setFormatter(FORMATTER)
+    logger.addHandler(handler)
 
     return logger
