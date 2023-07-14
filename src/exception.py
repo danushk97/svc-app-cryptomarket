@@ -2,7 +2,7 @@
 This module provides base exception class for the custom application exception.
 """
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, asdict
 from http import HTTPStatus
 
 from src.error_codes import ErrorCode
@@ -23,8 +23,20 @@ class AppException(Exception):
     """ 
 
     title: str = ErrorCode.INTERNAL_SERVER_ERROR.value
-    detail: str = "Unknown error has occured"
-    status : HTTPStatus = HTTPStatus.INTERNAL_SERVER_ERROR
+    detail: str = (
+        "The server encountered an internal error and was unable to complete "
+        "your request"
+    )
+    status : HTTPStatus = HTTPStatus.INTERNAL_SERVER_ERROR.value
     type: str = "about:blank"
     _log_message: str = field(default="", repr=False)
+    
+    def to_dict(self) -> dict:
+        data = asdict(self)
+        data.pop("_log_message")
+
+        return data
+    
+    def __str__(self) -> str:
+        return repr(self)
     
