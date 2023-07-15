@@ -26,12 +26,13 @@ class HttpClient:
     def __init__(self, proxy=requests) -> None:
         self.__proxy = proxy
 
-    def __make_request(
+    def __send_request(
         self,
         http_method: str, 
         url: str,
         params: dict = None,
         data: dict = None,
+        headers: dict = None,
         **kwargs
     ) -> dict:
         """
@@ -58,7 +59,13 @@ class HttpClient:
         _logger.info(f"[STARTING EXTERNAL SERVICE CALL]: {url}")
 
         try:
-            response = method(url, params=params, data=data, **kwargs)
+            response = method(
+                url, 
+                params=params, 
+                data=data, 
+                headers=headers, 
+                **kwargs
+            )
             response.raise_for_status()
         except requests.HTTPError as http_err:
             _logger.error(
@@ -81,9 +88,9 @@ class HttpClient:
 
     def get(
         self, 
-        base_url: str, 
-        resource_path: str, 
-        params: dict = None, 
+        url: str,
+        params: dict = None,
+        headers: dict = None,
         **kwargs
     ) -> dict:
         """
@@ -98,10 +105,11 @@ class HttpClient:
         Returns:
             dict: Response json.
         """
-        return self.__make_request(
+        return self.__send_request(
             Constants.GET,
-            urljoin(base_url, resource_path),
+            url,
             params,
+            headers,
             **kwargs 
         )
     
