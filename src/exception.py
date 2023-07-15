@@ -22,18 +22,16 @@ class AppException(Exception):
         type (str): A URI that identifies the problem type or "about:blank"
     """ 
 
-    title: str = ErrorCode.INTERNAL_SERVER_ERROR.value
+    title: str = ErrorCode.INTERNAL_SERVER_ERROR
     detail: str = (
         "The server encountered an internal error and was unable to complete "
         "your request"
     )
     status : HTTPStatus = HTTPStatus.INTERNAL_SERVER_ERROR.value
     type: str = "about:blank"
-    _log_message: str = field(default="", repr=False)
     
     def to_dict(self) -> dict:
         data = asdict(self)
-        data.pop("_log_message")
 
         return data
     
