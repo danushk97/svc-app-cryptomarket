@@ -4,7 +4,7 @@ This module provides a repository class for CryptoMarketSummary data management.
 
 import time
 import json
-from typing import List
+from typing import List, Union
 from urllib.parse import urljoin
 
 from src.adapters.data_source.http_client import HttpClient
@@ -63,11 +63,11 @@ class CryptoMarketSummaryHttpRepository(AbstractRepository):
 
     def __make_http_request(
         self, 
-        resource_path, 
+        resource_path: str, 
         http_method: str = Constants.GET
-    ):
+    ) -> dict:
         url = urljoin(self.__base_url, resource_path)
-        headers = self.__generate_request_headers(http_method, url)
+        headers = self.__generate_auth_request_headers(http_method, url)
         response_data = getattr(self.__http_client, http_method)(
             url,
             headers=headers
@@ -75,11 +75,25 @@ class CryptoMarketSummaryHttpRepository(AbstractRepository):
 
         return response_data
     
-    def __generate_request_headers(self, 
+    def __generate_auth_request_headers(self, 
         http_method: str,
         url: str,
-        request_body = ""
-    ):
+        request_body: Union[dict, str] = ""
+    ) -> dict:
+        """
+        Generates auth request headers for communicating with Bittrex service.
+
+        This function generates auth header based on the `official documentation
+        <https://bittrex.github.io/api/v3#topic-Authentication>`
+
+        Args:
+            http_method (str): A standard HTTP method.
+            url (str): A target URL,
+            request_body (dict | str): The request payload.
+        
+        Returns:
+            dict: Auth request header for Bittrex service.
+        """
         if request_body and isinstance(request_body, dict):
             request_body = json.dumps(request_body)
 
@@ -97,13 +111,11 @@ class CryptoMarketSummaryHttpRepository(AbstractRepository):
             content_hash, 
             ""
         ])
-        headers.update(
-            {
-                Constants.API_SIGNATURE: utils.calculate_hmac_sha512_signature(
-                    pre_sign, Config.BITTREX_SECRET_KEY
-                )
-            }
-        )
+        headers[Constants.API_SIGNATURE] = \
+            utils.calculate_hmac_sha512_signature(
+                pre_sign, 
+                Config.BITTREX_SECRET_KEY
+            )
         
         return headers
     
