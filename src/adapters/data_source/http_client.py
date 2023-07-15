@@ -72,7 +72,7 @@ class HttpClient:
             f"[SUCCESSFUL EXTERNAL SERVICE CALL]: {response.status_code} {url}"
         )
 
-        return response.json()
+        return response.json(), response.status_code
 
     def get(
         self, 
