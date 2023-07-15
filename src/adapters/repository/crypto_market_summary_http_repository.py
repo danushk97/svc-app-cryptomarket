@@ -66,6 +66,16 @@ class CryptoMarketSummaryHttpRepository(AbstractRepository):
         resource_path: str, 
         http_method: str = Constants.GET
     ) -> dict:
+        """
+        Orchestrates request details and makes http request.
+
+        Args:
+            resource_path (str): The resource path.
+            http_method (str): The Standard HTTP method.
+
+        Returns:
+            response_data (dict): A response json.
+        """
         url = urljoin(self.__base_url, resource_path)
         headers = self.__generate_auth_request_headers(http_method, url)
         response_data = getattr(self.__http_client, http_method)(

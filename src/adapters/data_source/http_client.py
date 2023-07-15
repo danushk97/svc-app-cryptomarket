@@ -99,7 +99,7 @@ class HttpClient:
 
         Args:
             base_url (str): The base URL.
-            resource_path (str): The URL path.
+            resource_path (str): The resource path.
             params (dict, optional): Query string/param if any.
             kwargs (dict, optional): Additional request detail, Ex: headers
         
