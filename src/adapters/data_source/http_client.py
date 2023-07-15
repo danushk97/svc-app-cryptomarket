@@ -2,12 +2,9 @@
 This module provides an HTTP client for making HTTP requests.
 """
 
-from urllib.parse import urljoin
-from http import HTTPStatus
-
 import requests
 
-from src.constants import Constants
+from src.constants import Constants, HTTPStatus
 from src.adapters.data_source.exception import ExternalServiceException, \
     ResourceNotFoundException
 from src.logs import get_logger
