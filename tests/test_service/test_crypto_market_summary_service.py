@@ -47,3 +47,11 @@ def test_retrieve_all_market_summaries_returns_list_of_market_summaries(
     data = service.retrieve_all()
     assert len(data) == 1
     assert data[0] == CryptoMarketSummary.from_dict(market_summary_dict)
+
+
+def test_retrieve_market_summary_for_returns_instance(
+    fake_repository
+):
+    service = CryptoMarketSummaryService(fake_repository)
+    data = service.retrieve_market_summary_for('test-market')
+    assert data == CryptoMarketSummary.from_dict(market_summary_dict)
