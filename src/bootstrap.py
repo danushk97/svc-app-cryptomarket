@@ -16,7 +16,7 @@ _logger = get_logger(__name__)
 
 
 def _log_request_start():
-    _logger.info(f"START processing {request.url}")
+    _logger.info(f"STARTED processing {request.url}")
     _logger.debug(f"Request Headers: {request.headers}")
 
     g.start_time = time.time()
