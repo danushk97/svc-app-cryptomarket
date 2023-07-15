@@ -54,7 +54,7 @@ def test_get_crypto_currency_market_summary_returns_ok_response(
     fake_service, test_client, snake_case_market_summary_dict
 ):
 
-    response = test_client.get("/v3/crypto/markets/test-market/summaries")
+    response = test_client.get("/v3/crypto/markets/test-market/summary")
     response_json = response.get_json()
     assert response.status_code == 200
     assert response_json == snake_case_market_summary_dict
