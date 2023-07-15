@@ -43,6 +43,8 @@ class CryptoMarketSummaryHttpRepository(AbstractRepository):
             for data in response_data
         ]
 
-    def find_by_summary(self, summary):
-        return super().find_by_summary(summary)
+    def find_by_market(self, summary: str) -> CryptoMarketSummary:
+        """
+        Retrieves 
+        """
     

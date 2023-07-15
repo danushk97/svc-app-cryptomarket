@@ -16,6 +16,6 @@ class AbstractRepository(ABC):
         raise NotImplementedError
     
     @abstractmethod
-    def find_by_summary(self, summary):
+    def find_by_market(self, summary):
         raise NotImplementedError
     
