@@ -34,4 +34,3 @@ class CryptoMarketSummaryService:
             CryptoMarketSummary: A crypt-current market summary.
         """
         return self.cryto_market_summaries.find_by_market(market)
-    
