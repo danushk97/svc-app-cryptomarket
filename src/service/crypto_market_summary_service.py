@@ -19,10 +19,19 @@ class CryptoMarketSummaryService:
     
     def retrieve_all(self) -> List[CryptoMarketSummary]:
         """
-        retrieves list of all available crypto-currency market summaries.
+        Retrieves list of all available crypto-currency market summaries.
 
         Returns:
             List[CryptoMarketSummary]: A list of CryptoMarketSummary.
         """
         return self.cryto_market_summaries.list()
+
+    def retrieve_market_summary_for(self, market: str) -> CryptoMarketSummary:
+        """
+        Retrieves crypto-currency market summary for given market.
+
+        Returns:
+            CryptoMarketSummary: A crypt-current market summary.
+        """
+        return self.cryto_market_summaries.find_by_market(market)
     
