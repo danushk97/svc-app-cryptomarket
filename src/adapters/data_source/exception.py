@@ -20,3 +20,7 @@ class ExternalServiceException(AppException):
 class ResourceNotFoundException(ExternalServiceException):
     status: int = 404
     title: str = ErrorCode.NOT_FOUND
+    detail: str = (
+        "The requested URL was not found on the server. If you entered the URL "
+        "manually please check your spelling and try again."
+    )
