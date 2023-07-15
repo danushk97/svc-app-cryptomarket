@@ -8,10 +8,9 @@ from src.adapters.data_source.exception import ExternalServiceException, \
 
 
 def test_http_get_returns_response_data_on_successful_request():
-    data, status_code = HttpClient(FakeSuccessRequests()).get(
+    data = HttpClient(FakeSuccessRequests()).get(
         'http://test.com', '/'
     )
-    assert status_code == 200
     assert data == {
         'data': 'mock'
     }
