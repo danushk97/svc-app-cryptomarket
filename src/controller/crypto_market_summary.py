@@ -9,3 +9,11 @@ def retrieve_all():
     data = service.retrieve_all()
 
     return [row.to_dict() for row in data]
+
+
+def retrieve_market_summary_for(market: str):
+    repository = CryptoMarketSummaryHttpRepository()
+    service = CryptoMarketSummaryService(repository)
+    data = service.retrieve_market_summary_for(market)
+
+    return data

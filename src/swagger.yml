@@ -43,6 +43,26 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/crypto_market_summary"
+  /crypto/markets/{market}/summary:
+    get:
+      operationId: src.controller.crypto_market_summary.retrieve_market_summary_for
+      tags:
+      - Crypto Market Summaries
+      summary: Get crypto-currency market summary for market
+      parameters:
+        - in: path
+          name: market
+          schema:
+            type: string
+          required: true
+          description: A crypto-currency market name.
+      responses:
+        200:
+          description: Successful retrieve operation
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/crypto_market_summary"
 
 components:
   schemas:
