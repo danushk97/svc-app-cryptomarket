@@ -34,9 +34,11 @@ def fake_repository():
         "6.07", 
         "2023-07-13T04:39:44.69Z"
     )
-    fake_repo.list.return_value = [
-        CryptoMarketSummary.from_dict(market_summary_dict)
-    ]
+    summary = CryptoMarketSummary.from_dict(market_summary_dict)
+
+    fake_repo.list.return_value = [summary]
+    fake_repo.find_by_market.return_value = summary
+    
     yield fake_repo
 
 
