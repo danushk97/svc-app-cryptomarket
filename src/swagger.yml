@@ -28,6 +28,10 @@ paths:
                   status:
                     type: string
                     example: up
+        404:
+          $ref: "#/components/responses/not_found"
+        500:
+          $ref: "#/components/responses/server_error"
   /crypto/markets/summaries:
     get:
       operationId: src.controller.crypto_market_summary.retrieve_all
@@ -43,6 +47,10 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/crypto_market_summary"
+        404:
+          $ref: "#/components/responses/not_found"
+        500:
+          $ref: "#/components/responses/server_error"
   /crypto/markets/{market}/summary:
     get:
       operationId: src.controller.crypto_market_summary.retrieve_market_summary_for
@@ -63,6 +71,10 @@ paths:
             application/json:
               schema:
                   $ref: "#/components/schemas/crypto_market_summary"
+        404:
+          $ref: "#/components/responses/not_found"
+        500:
+          $ref: "#/components/responses/server_error"
 
 components:
   schemas:
@@ -83,3 +95,26 @@ components:
           type: string
         updated_at:
           type: string
+    error_detail:
+      properties:
+        title:
+          type: string
+        detail:
+          type: string
+        about:
+          type: integer
+        status:
+          type: string
+  responses:
+    not_found:
+      description: Entity not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error_detail'
+    server_error:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error_detail'
