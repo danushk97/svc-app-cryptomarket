@@ -43,8 +43,20 @@ class CryptoMarketSummaryHttpRepository(AbstractRepository):
             for data in response_data
         ]
 
-    def find_by_market(self, summary: str) -> CryptoMarketSummary:
+    def find_by_market(self, market: str) -> CryptoMarketSummary:
         """
-        Retrieves 
+        Retrieves crypto-currency market summaries for the given market.
+
+        Args:
+            market (str): A string denoting a market.
+
+        Returns:
+            CryptoMarketSummary: A crypto-currency market summary.
         """
+        response_data = self.__http_client.get(
+            self.__base_url,
+            Config.MARKET_SUMMARY_ENDPOINT.format(market=market)
+        )
+
+        return CryptoMarketSummary.from_dict(response_data)
     
