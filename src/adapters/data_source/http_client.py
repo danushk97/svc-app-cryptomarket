@@ -54,9 +54,9 @@ class HttpClient:
         params = params or {}
         data = data or {}
         
-        failed_log_message = f"[UNSUCCESSFUL EXTERNAL SERVICE CALL]: "
+        failed_log_message = f"UNSUCCESSFUL EXTERNAL SERVICE CALL: "
 
-        _logger.info(f"[STARTING EXTERNAL SERVICE CALL]: {url}")
+        _logger.info(f"STARTING EXTERNAL SERVICE CALL: {url}")
         _logger.debug(f"Request Headers: {headers}")
 
         try:
@@ -82,7 +82,7 @@ class HttpClient:
             raise ExternalServiceException() from req_err
         
         _logger.info(
-            f"[SUCCESSFUL EXTERNAL SERVICE CALL]: {response.status_code} {url}"
+            f"SUCCESSFUL EXTERNAL SERVICE CALL: {response.status_code} {url}"
         )
 
         return response.json()

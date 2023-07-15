@@ -7,32 +7,27 @@ import os
 
 import connexion
 
-from src import error_handlers
-from src.exception import AppException
-from src.config import Config
+from src.bootstrap import init_app
+from src.logs import get_logger
+
+
+_logger = get_logger(__name__)
 
 
 def create_app():
     """
     Creates and configures flask app using connexion.
     """
-    Config.init()  # Loads and initializes the app configs.
-    
     basedir = os.path.abspath(os.path.dirname(__file__))
+    
     connex_app = connexion.App(__name__, specification_dir=basedir)
+    init_app(connex_app.app)
+    
+    _logger.info("Registering routes...")
     connex_app.add_api(
         "swagger.yml", 
         strict_validation=True,
         base_path="/v3"
-    )
-
-    connex_app.app.register_error_handler(
-        AppException, 
-        error_handlers.app_error_handler
-    )
-    connex_app.app.register_error_handler(
-        Exception, 
-        error_handlers.generic_error_handler
     )
     
     return connex_app.app

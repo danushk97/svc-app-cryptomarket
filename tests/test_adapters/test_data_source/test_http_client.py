@@ -32,7 +32,7 @@ def test_http_get_raises_app_exception_on_unsuccessful_request(caplog):
     exc = exc._excinfo[1]
     logs = [record.getMessage() for record in caplog.records]
     expected_log_message = \
-        "[UNSUCCESSFUL EXTERNAL SERVICE CALL]: Error. {\"data\": \"mock\"}"
+        "UNSUCCESSFUL EXTERNAL SERVICE CALL: Error. {\"data\": \"mock\"}"
 
     assert exc.status == 500
     assert expected_log_message in logs
@@ -47,6 +47,6 @@ def test_http_get_raises_resource_not_found_exception_on_404_response(caplog):
     exc = exc._excinfo[1]
     logs = [record.getMessage() for record in caplog.records]
     expected_log_message = \
-        "[UNSUCCESSFUL EXTERNAL SERVICE CALL]: Error. {\"data\": \"mock\"}"
+        "UNSUCCESSFUL EXTERNAL SERVICE CALL: Error. {\"data\": \"mock\"}"
     assert exc.status == 404
     assert expected_log_message in logs
