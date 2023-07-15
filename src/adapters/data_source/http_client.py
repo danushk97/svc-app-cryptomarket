@@ -57,6 +57,7 @@ class HttpClient:
         failed_log_message = f"[UNSUCCESSFUL EXTERNAL SERVICE CALL]: "
 
         _logger.info(f"[STARTING EXTERNAL SERVICE CALL]: {url}")
+        _logger.debug(f"Request Headers: {headers}")
 
         try:
             response = method(
@@ -108,8 +109,8 @@ class HttpClient:
         return self.__send_request(
             Constants.GET,
             url,
-            params,
-            headers,
+            params=params,
+            headers=headers,
             **kwargs 
         )
     
