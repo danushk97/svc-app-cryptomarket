@@ -1,5 +1,8 @@
-from enum import Enum
+"""
+This module is responsible for holding constants that are used application wide.
+"""
 
 
-class ErrorCode(Enum):
+class ErrorCode:
     INTERNAL_SERVER_ERROR = "Internal Server Error"
+    NOT_FOUND = "Not Found"

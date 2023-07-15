@@ -3,11 +3,13 @@ This module provides an HTTP client for making HTTP requests.
 """
 
 from urllib.parse import urljoin
+from http import HTTPStatus
 
 import requests
 
 from src.constants import Constants
-from src.adapters.data_source.exception import ExternalServiceException
+from src.adapters.data_source.exception import ExternalServiceException, \
+    ResourceNotFoundException
 from src.logs import get_logger
 
 
@@ -62,6 +64,9 @@ class HttpClient:
             _logger.error(
                 failed_log_message + f"{http_err}. {http_err.response.text}"
             )
+            if http_err.response.status_code == HTTPStatus.NOT_FOUND:
+                raise ResourceNotFoundException() from http_err 
+
             raise ExternalServiceException() from http_err
         except requests.RequestException as req_err:
             _logger.error(failed_log_message + f"{req_err}")

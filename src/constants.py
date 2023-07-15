@@ -2,8 +2,6 @@
 This module is responsible for holding constants that are used application wide.
 """
 
-from typing import Any
-
 
 class Constants:
     """
