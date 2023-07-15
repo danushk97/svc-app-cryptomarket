@@ -16,7 +16,9 @@ _logger = get_logger(__name__)
 _REQUIRED_CONFIGS = [
     "BITTREX_SERVICE_BASE_URL",
     "ALL_MARKETS_SUMMARY_ENDPOINT",
-    "MARKET_SUMMARY_ENDPOINT" 
+    "MARKET_SUMMARY_ENDPOINT",
+    "BITTREX_API_KEY",
+    "BITTREX_SECRET_KEY"
 ]
 
 
@@ -31,7 +33,12 @@ class Config:
     BITTREX_SERVICE_BASE_URL = None
     ALL_MARKETS_SUMMARY_ENDPOINT = None
     MARKET_SUMMARY_ENDPOINT = None
+
     ENV = environ.get(Constants.ENV, Constants.DEV)
+
+    # Bittrex API secrets.
+    BITTREX_API_KEY = None
+    BITTREX_SECRET_KEY = None
 
     @classmethod
     def init(cls) -> None:
