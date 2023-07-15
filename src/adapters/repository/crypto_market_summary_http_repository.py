@@ -84,7 +84,7 @@ class CryptoMarketSummaryHttpRepository(AbstractRepository):
             request_body = json.dumps(request_body)
 
         content_hash = utils.calculate_sha512_hash(request_body)
-        timestamp = int(time.time()) * 1000
+        timestamp = str(int(time.time()) * 1000)
         headers = {
             Constants.API_KEY: Config.BITTREX_API_KEY,
             Constants.API_TIMESTAMP: timestamp,
