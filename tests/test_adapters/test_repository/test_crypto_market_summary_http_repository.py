@@ -35,7 +35,7 @@ def test_get_find_by_market_given_valid_input_then_returns_data(
 def test_get_find_by_market_given_invalid_summary_then_raises_external_serivce_exception(
     snake_case_market_summary_dict
 ):
-    with pytest.raises(ResourceNotFoundException) as exc:
+    with pytest.raises(ResourceNotFoundException):
         CryptoMarketSummaryHttpRepository(
             FakeHttpClient(snake_case_market_summary_dict, 404)
         ).find_by_market(

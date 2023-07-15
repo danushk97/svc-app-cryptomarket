@@ -21,16 +21,19 @@ class FakeResponse:
 
 
 class FakeSuccessRequests:
-    def get(url, params=None, **kwargs):
+    def get(self, url, params=None, **kwargs):
         return FakeResponse()
 
 
 class FakeFailureRequests(FakeSuccessRequests):
-    def get(url, params=None, **kwargs):
+    def get(self, url, params=None, **kwargs):
         raise RequestException('Unexpected error')
 
 
 class FakeFailureRequestsWithHttpError(FakeSuccessRequests):
-    def get(url, params=None, **kwargs):
-        return FakeResponse(400)
+    def __init__(self, status_code=400) -> None:
+        self.status_code = status_code
+
+    def get(self, url, params=None, **kwargs):
+        return FakeResponse(self.status_code)
     
