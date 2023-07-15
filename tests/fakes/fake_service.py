@@ -9,7 +9,10 @@ class FakeCryptoMarketSummaryService:
         self.repo = repo
 
     def retrieve_all(self):
-        return [ make_crypto_market_summary() ]
+        return [make_crypto_market_summary()]
+
+    def retrieve_market_summary_for(self, market):
+        return make_crypto_market_summary()
 
 class FakeCryptoMarketSummaryRaisesExceptionService(
     FakeCryptoMarketSummaryService
@@ -17,3 +20,5 @@ class FakeCryptoMarketSummaryRaisesExceptionService(
     def retrieve_all(self):
         raise ExternalServiceException() from HTTPError()
     
+    def retrieve_market_summary_for(self, market):
+        return self.retrieve_all()
