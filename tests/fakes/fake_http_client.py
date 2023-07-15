@@ -1,6 +1,5 @@
-from requests.exceptions import HTTPError
-
 from tests.fakes.fake_requests import FakeResponse
+from src.adapters.data_source.exception import ResourceNotFoundException
 
 
 class FakeHttpClient:
@@ -10,7 +9,7 @@ class FakeHttpClient:
     
     def get(self, *args):
         if self.status_code == 404:
-            raise HTTPError("Not Found", response=FakeResponse(400))
+            raise ResourceNotFoundException()
         
-        return self.data, self.status_code
+        return self.data
     

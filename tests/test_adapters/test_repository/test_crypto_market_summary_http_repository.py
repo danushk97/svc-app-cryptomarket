@@ -1,13 +1,11 @@
-from unittest.mock import create_autospec
 
 import pytest
 
 from tests.fakes.fake_http_client import FakeHttpClient
 from src.adapters.repository.crypto_market_summary_http_repository import \
     CryptoMarketSummaryHttpRepository
-from src.adapters.data_source.http_client import HttpClient
 from src.domain.crypto_market_summary import CryptoMarketSummary
-from src.adapters.data_source.exception import ExternalServiceException
+from src.adapters.data_source.exception import ResourceNotFoundException
 
 
 def test_get_retrieve_crypto_market_summary_returns_list_of_market_summary(
@@ -37,9 +35,9 @@ def test_get_find_by_market_given_valid_input_then_returns_data(
 def test_get_find_by_market_given_invalid_summary_then_raises_external_serivce_exception(
     snake_case_market_summary_dict
 ):
-    with pytest.raises(ExternalServiceException) as exc:
+    with pytest.raises(ResourceNotFoundException) as exc:
         CryptoMarketSummaryHttpRepository(
-            FakeHttpClient(snake_case_market_summary_dict, 400)
+            FakeHttpClient(snake_case_market_summary_dict, 404)
         ).find_by_market(
             "invalid-summary"
         )
