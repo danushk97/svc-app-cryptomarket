@@ -21,10 +21,9 @@ def fake_service_raises_exception(monkeypatch):
     )
 
 
-def test_get_crypto_currency_market_summary_returns_ok_response(
+def test_get_all_crypto_currency_market_summary_returns_ok_response(
     fake_service, test_client, snake_case_market_summary_dict
 ):
-
     response = test_client.get("/v3/crypto/markets/summaries")
     response_json = response.get_json()
     assert response.status_code == 200
@@ -32,10 +31,9 @@ def test_get_crypto_currency_market_summary_returns_ok_response(
     assert response_json[0] == snake_case_market_summary_dict
 
 
-def test_get_crypto_currency_market_summary_returns_not_ok_response_on_error_from_service(
-    fake_service_raises_exception, test_client, snake_case_market_summary_dict
+def test_get_all_crypto_currency_market_summary_returns_not_ok_response_on_error_from_service(
+    fake_service_raises_exception, test_client
 ):
-
     response = test_client.get("/v3/crypto/markets/summaries")
     response_json = response.get_json()
     assert response.status_code == 500
@@ -58,3 +56,20 @@ def test_get_crypto_currency_market_summary_returns_ok_response(
     response_json = response.get_json()
     assert response.status_code == 200
     assert response_json == snake_case_market_summary_dict
+
+
+def test_get_crypto_currency_market_summary_returns_404_on_resource_not_found(
+    fake_service_raises_exception, test_client
+):
+    response = test_client.get("/v3/crypto/markets/test-market/summary")
+    response_json = response.get_json()
+    assert response.status_code == 404
+    assert response_json == {
+        "detail": (
+            "The requested URL was not found on the server. If you entered the "
+            "URL manually please check your spelling and try again."
+        ),
+        "status": 404,
+        "title": "Not Found",
+        "type": "about:blank"
+    }

@@ -1,7 +1,8 @@
 from requests import HTTPError
 
 from tests.conftest import make_crypto_market_summary
-from src.adapters.data_source.exception import ExternalServiceException
+from src.adapters.data_source.exception import ExternalServiceException, \
+    ResourceNotFoundException
 
 
 class FakeCryptoMarketSummaryService:
@@ -21,4 +22,4 @@ class FakeCryptoMarketSummaryRaisesExceptionService(
         raise ExternalServiceException() from HTTPError()
     
     def retrieve_market_summary_for(self, market):
-        return self.retrieve_all()
+        raise ResourceNotFoundException() from HTTPError()
