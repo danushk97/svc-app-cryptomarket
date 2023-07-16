@@ -21,7 +21,6 @@ class CryptoMarketSummary:
                 for field in fields(cls)
             ]
         )
-    
+
     def to_dict(self) -> dict:
         return asdict(self)
-    
