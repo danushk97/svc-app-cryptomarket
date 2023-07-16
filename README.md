@@ -23,7 +23,7 @@ or higher and the [PIP](https://pip.pypa.io/en/stable/) package manager.
 ## Clone the repository
 
 ```console
-$ git clone https://github.com/danushk97/svc-app-cryptocurrency
+$ git clone https://github.com/danushk97/svc-app-cryptomarket
 $ cd svc-app-cryptomarket
 ```
 
