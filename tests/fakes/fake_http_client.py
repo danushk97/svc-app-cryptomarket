@@ -7,7 +7,7 @@ class FakeHttpClient:
         self.data = data
         self.status_code = status_code
     
-    def get(self, *args, **kwargs):
+    def send_request(self, *args, **kwargs):
         if self.status_code == 404:
             raise ResourceNotFoundException()
         
