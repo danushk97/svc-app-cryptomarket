@@ -1,6 +1,7 @@
 connexion==2.14.2
 connexion[swagger-ui]
 requests==2.31.*
+python-dotenv==1.0.0
 
 # testing
 pytest==7.4.0
