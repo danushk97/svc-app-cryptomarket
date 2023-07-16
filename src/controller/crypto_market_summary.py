@@ -1,4 +1,5 @@
-from src.service.crypto_market_summary_service import CryptoMarketSummaryService
+from src.service.crypto_market_summary_service import \
+    CryptoMarketSummaryService
 from src.adapters.repository.crypto_market_summary_http_repository import \
     CryptoMarketSummaryHttpRepository
 
