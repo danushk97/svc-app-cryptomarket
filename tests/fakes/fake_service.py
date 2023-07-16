@@ -19,7 +19,7 @@ class FakeCryptoMarketSummaryServiceRaisesException(
     FakeCryptoMarketSummaryService
 ):
     def retrieve_all(self):
-        raise ExternalServiceException() from HTTPError()
+        raise Exception
     
     def retrieve_market_summary_for(self, market):
         raise ResourceNotFoundException() from HTTPError()
