@@ -10,13 +10,13 @@ from src.service.interface.abstract_repository import AbstractRepository
 
 class CryptoMarketSummaryService:
     """
-    The class `CryptoMarketSummaryService` that encapsulates the business logic 
+    The class `CryptoMarketSummaryService` that encapsulates the business logic
     operations and interacts with the repository to fetch and manipulate data.
     """
 
     def __init__(self, repository: AbstractRepository) -> None:
         self.cryto_market_summaries = repository
-    
+
     def retrieve_all(self) -> List[CryptoMarketSummary]:
         """
         Retrieves list of all available crypto-currency market summaries.

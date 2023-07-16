@@ -10,12 +10,11 @@ class AbstractRepository(ABC):
     The `AbstractRepository` class defines the common interface and behavior
     for interacting with an repository.
     """
-    
+
     @abstractmethod
     def list(self):
         raise NotImplementedError
-    
+
     @abstractmethod
     def find_by_market(self, summary):
         raise NotImplementedError
-    
