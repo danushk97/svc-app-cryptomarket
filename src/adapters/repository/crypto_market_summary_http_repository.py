@@ -1,5 +1,6 @@
 """
-This module provides a repository class for CryptoMarketSummary data management.
+This module provides a repository class for CryptoMarketSummary data
+management.
 """
 
 import time
@@ -17,20 +18,20 @@ from src.service.interface.abstract_repository import AbstractRepository
 
 class CryptoMarketSummaryHttpRepository(AbstractRepository):
     """
-    The `CryptoMarketSummaryHttpRepository` class represents a repository 
-    for managing data. It encapsulates the functionality for retrieving, and 
-    manipulating data in the repository. It serves as an abstraction layer 
+    The `CryptoMarketSummaryHttpRepository` class represents a repository
+    for managing data. It encapsulates the functionality for retrieving, and
+    manipulating data in the repository. It serves as an abstraction layer
     for interacting with the underlying data source.
     """
 
     def __init__(
-        self, 
-        http_client: HttpClient = None, 
+        self,
+        http_client: HttpClient = None,
         base_url: str = None
     ) -> None:
         self.__http_client = http_client or HttpClient()
         self.__base_url = base_url or Config.BITTREX_SERVICE_BASE_URL
-    
+
     def list(self) -> List[CryptoMarketSummary]:
         """
         Retrieves and returns a list of all crypto-currency market summaries.
@@ -62,8 +63,8 @@ class CryptoMarketSummaryHttpRepository(AbstractRepository):
         return CryptoMarketSummary.from_dict(data)
 
     def __make_http_request(
-        self, 
-        resource_path: str, 
+        self,
+        resource_path: str,
         http_method: str = Constants.GET
     ) -> dict:
         """
@@ -85,8 +86,9 @@ class CryptoMarketSummaryHttpRepository(AbstractRepository):
         )
 
         return response_data
-    
-    def __generate_auth_request_headers(self, 
+
+    def __generate_auth_request_headers(
+        self,
         http_method: str,
         url: str,
         request_body: Union[dict, str] = ""
@@ -94,14 +96,14 @@ class CryptoMarketSummaryHttpRepository(AbstractRepository):
         """
         Generates auth request headers for communicating with Bittrex service.
 
-        This function generates auth header based on the `official documentation
-        <https://bittrex.github.io/api/v3#topic-Authentication>`
+        This function generates auth header based on the `official 
+        documentation <https://bittrex.github.io/api/v3#topic-Authentication>`
 
         Args:
             http_method (str): A standard HTTP method.
             url (str): A target URL,
             request_body (dict | str): The request payload.
-        
+
         Returns:
             dict: Auth request header for Bittrex service.
         """
@@ -116,10 +118,10 @@ class CryptoMarketSummaryHttpRepository(AbstractRepository):
             Constants.API_CONTENT_HASH: content_hash
         }
         pre_sign = "".join([
-            str(timestamp), 
+            str(timestamp),
             url,
-            http_method.upper(), 
-            content_hash, 
+            http_method.upper(),
+            content_hash,
             ""
         ])
         headers[Constants.API_SIGNATURE] = \
@@ -127,6 +129,5 @@ class CryptoMarketSummaryHttpRepository(AbstractRepository):
                 Config.BITTREX_SECRET_KEY,
                 pre_sign
             )
-        
+
         return headers
-    
