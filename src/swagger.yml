@@ -16,7 +16,7 @@ paths:
       operationId: src.controller.health.health_check
       tags:
       - Health Check
-      summary: Ensures the application's health
+      summary: Ensures the application"s health
       responses:
         200:
           description: Application is healthy
@@ -111,10 +111,10 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/error_detail'
+            $ref: "#/components/schemas/error_detail"
     server_error:
       description: Internal Server Error
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/error_detail'
+            $ref: "#/components/schemas/error_detail"

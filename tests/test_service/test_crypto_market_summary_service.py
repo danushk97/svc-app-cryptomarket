@@ -55,5 +55,5 @@ def test_retrieve_market_summary_for_returns_instance(
     fake_repository
 ):
     service = CryptoMarketSummaryService(fake_repository)
-    data = service.retrieve_market_summary_for('test-market')
+    data = service.retrieve_market_summary_for("test-market")
     assert data == CryptoMarketSummary.from_dict(market_summary_dict)

@@ -19,4 +19,4 @@ def test_abstract_repo_raises_non_implemented_error():
         fake_repo.list()
     
     with pytest.raises(NotImplementedError):
-        fake_repo.find_by_market('summary')
+        fake_repo.find_by_market("summary")

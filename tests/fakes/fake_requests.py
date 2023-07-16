@@ -10,14 +10,14 @@ class FakeResponse:
 
     def json(self):
         return {
-            'data': 'mock'
+            "data": "mock"
         }
 
     def raise_for_status(self):
         if self.status_code == 200:
             return 
         
-        raise HTTPError('Error', response=self)
+        raise HTTPError("Error", response=self)
 
 
 class FakeSuccessRequests:
@@ -27,7 +27,7 @@ class FakeSuccessRequests:
 
 class FakeFailureRequests(FakeSuccessRequests):
     def get(self, url, params=None, **kwargs):
-        raise RequestException('Unexpected error')
+        raise RequestException("Unexpected error")
 
 
 class FakeFailureRequestsWithHttpError(FakeSuccessRequests):

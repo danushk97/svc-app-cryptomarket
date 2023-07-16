@@ -36,10 +36,10 @@ class Constants:
     INFO = "INFO"
 
     # BITTREX API request headers.
-    API_KEY = 'api-key'
-    API_TIMESTAMP = 'api-timestamp'
-    API_SIGNATURE = 'api-signature'
-    API_CONTENT_HASH = 'api-content-hash'
+    API_KEY = "api-key"
+    API_TIMESTAMP = "api-timestamp"
+    API_SIGNATURE = "api-signature"
+    API_CONTENT_HASH = "api-content-hash"
 
     @staticmethod
     def snake_to_camel_case(value: str) -> str:
