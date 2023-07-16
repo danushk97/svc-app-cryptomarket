@@ -15,7 +15,7 @@ class FakeCryptoMarketSummaryService:
     def retrieve_market_summary_for(self, market):
         return make_crypto_market_summary()
 
-class FakeCryptoMarketSummaryRaisesExceptionService(
+class FakeCryptoMarketSummaryServiceRaisesException(
     FakeCryptoMarketSummaryService
 ):
     def retrieve_all(self):

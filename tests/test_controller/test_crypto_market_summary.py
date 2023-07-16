@@ -1,7 +1,7 @@
 import pytest
 
 from tests.fakes.fake_service import FakeCryptoMarketSummaryService, \
-    FakeCryptoMarketSummaryRaisesExceptionService
+    FakeCryptoMarketSummaryServiceRaisesException
 
 
 service_path = "src.controller.crypto_market_summary.CryptoMarketSummaryService"
@@ -17,7 +17,7 @@ def fake_service(monkeypatch):
 @pytest.fixture()
 def fake_service_raises_exception(monkeypatch):
     monkeypatch.setattr(
-        service_path, FakeCryptoMarketSummaryRaisesExceptionService
+        service_path, FakeCryptoMarketSummaryServiceRaisesException
     )
 
 
