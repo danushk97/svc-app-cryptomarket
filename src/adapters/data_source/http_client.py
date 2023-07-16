@@ -4,7 +4,7 @@ This module provides an HTTP client for making HTTP requests.
 
 import requests
 
-from src.constants import Constants, HTTPStatus
+from src.constants import HTTPStatus
 from src.adapters.data_source.exception import ExternalServiceException, \
     ResourceNotFoundException
 from src.logs import get_logger
@@ -15,8 +15,8 @@ _logger = get_logger(__name__)
 
 class HttpClient:
     """
-    The `HttpClient` class encapsulates the functionality for sending HTTP 
-    requests and handling responses. It provides a convenient interface for 
+    The `HttpClient` class encapsulates the functionality for sending HTTP
+    requests and handling responses. It provides a convenient interface for
     interacting with HTTP-based APIs.
     """
 
@@ -25,7 +25,7 @@ class HttpClient:
 
     def send_request(
         self,
-        http_method: str, 
+        http_method: str,
         url: str,
         params: dict = None,
         data: dict = None,
@@ -40,28 +40,28 @@ class HttpClient:
             params (dict, optional): Optional query string/param if any.
             data (dict, optional): Optional request body.
             kwargs (dict, optional): Additional request detail, Ex: headers
-        
+
         Returns:
             dict: Resposne JSON.
-        
+
         Raises:
             AppException: If requests.RequestException is raised.
         """
         method = getattr(self.__proxy, http_method)
         params = params or {}
         data = data or {}
-        
-        failed_log_message = f"UNSUCCESSFUL EXTERNAL SERVICE CALL: "
+
+        failed_log_message = "UNSUCCESSFUL EXTERNAL SERVICE CALL: "
 
         _logger.info(f"STARTING EXTERNAL SERVICE CALL: {url}")
         _logger.debug(f"Request Headers: {headers}")
 
         try:
             response = method(
-                url, 
-                params=params, 
-                data=data, 
-                headers=headers, 
+                url,
+                params=params,
+                data=data,
+                headers=headers,
                 **kwargs
             )
             response.raise_for_status()
@@ -70,14 +70,14 @@ class HttpClient:
                 failed_log_message + f"{http_err}. {http_err.response.text}"
             )
             if http_err.response.status_code == HTTPStatus.NOT_FOUND:
-                raise ResourceNotFoundException() from http_err 
+                raise ResourceNotFoundException() from http_err
 
             raise ExternalServiceException() from http_err
         except requests.RequestException as req_err:
             _logger.error(failed_log_message + f"{req_err}")
 
             raise ExternalServiceException() from req_err
-        
+
         _logger.info(
             f"SUCCESSFUL EXTERNAL SERVICE CALL: {response.status_code} {url}"
         )
