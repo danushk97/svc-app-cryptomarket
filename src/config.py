@@ -44,7 +44,7 @@ class Config:
     def init(cls) -> None:
         """
         Loads the configs from `{ENV}.env` and initialzes the
-        class level attributes. 
+        class level attributes.
         """
         missing_configs = []
         config_dict = dotenv_values(f"{cls.ENV}.env")
@@ -53,6 +53,7 @@ class Config:
             _logger.critical(
                 "Aborting application start up due to empty configs."
             )
+
             _exit(1)
 
         for key in _REQUIRED_CONFIGS:
@@ -67,4 +68,5 @@ class Config:
                 "Aborting application start up due to missing "
                 f"configs {missing_configs}."
             )
+
             _exit(1)

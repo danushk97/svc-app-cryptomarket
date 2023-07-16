@@ -19,15 +19,16 @@ def create_app():
     Creates and configures flask app using connexion.
     """
     basedir = os.path.abspath(os.path.dirname(__file__))
-    
+
     connex_app = connexion.App(__name__, specification_dir=basedir)
     init_app(connex_app.app)
-    
+
     _logger.info("Registering routes...")
+
     connex_app.add_api(
-        "swagger.yml", 
+        "swagger.yml",
         strict_validation=True,
         base_path="/v3"
     )
-    
+
     return connex_app.app

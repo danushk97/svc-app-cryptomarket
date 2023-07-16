@@ -20,7 +20,7 @@ def get_logger(name: str) -> logging.Logger:
 
     Args:
         name (str): A name for logger.
-    
+
     Returns:
         logging.Logger: A Logger instance that can used to log messages.
     """
@@ -28,7 +28,7 @@ def get_logger(name: str) -> logging.Logger:
     level = logging.INFO
     if environ.get(Constants.LOGGING_LEVEL) == Constants.DEBUG:
         level = logging.DEBUG
-    
+
     logger.setLevel(level)
     handler = logging.StreamHandler()
     handler.setFormatter(FORMATTER)

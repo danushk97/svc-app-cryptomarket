@@ -1,5 +1,6 @@
 """
-This module is responsible for holding constants that are used application wide.
+This module is responsible for holding constants that are used
+application wide.
 """
 
 
@@ -43,12 +44,12 @@ class Constants:
     @staticmethod
     def snake_to_camel_case(value: str) -> str:
         """
-        Converts a string value to camelCase string values if the provided value
-        is in snake_case, if not returns the same value.
+        Converts a string value to camelCase string values if the provided
+        value is in snake_case, if not returns the same value.
 
         Args:
             value (string): Any string value. Ex: user_id
-        
+
         Returns:
             str: CamelCased string value.
         """
@@ -61,4 +62,3 @@ class HTTPStatus:
     INTERNAL_SERVER_ERROR = 500
     NOT_FOUND = 404
     OK = 200
-    

@@ -1,5 +1,6 @@
 """
-This module is responsible for holding constants that are used application wide.
+This module is responsible for holding constants that are used application
+wide.
 """
 
 

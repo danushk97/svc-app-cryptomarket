@@ -31,13 +31,15 @@ def _log_request_end(exception=None):
 
 def init_app(app: Flask):
     _logger.info("Loading app configs...")
+
     Config.init()  # Loads and initializes the app configs.
 
     _logger.info("Registering error handlers...")
+
     app.register_error_handler(AppException, error_handlers.app_error_handler)
     app.register_error_handler(Exception, error_handlers.generic_error_handler)
-    
+
     _logger.info("Registering before_request and teardown_request...")
+
     app.before_request(_log_request_start)
     app.teardown_request(_log_request_end)
-    
