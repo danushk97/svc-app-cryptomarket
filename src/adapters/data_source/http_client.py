@@ -23,7 +23,7 @@ class HttpClient:
     def __init__(self, proxy=requests) -> None:
         self.__proxy = proxy
 
-    def __send_request(
+    def send_request(
         self,
         http_method: str, 
         url: str,
@@ -83,31 +83,3 @@ class HttpClient:
         )
 
         return response.json()
-
-    def get(
-        self, 
-        url: str,
-        params: dict = None,
-        headers: dict = None,
-        **kwargs
-    ) -> dict:
-        """
-        Retrieves data using HTTP get.
-
-        Args:
-            base_url (str): The base URL.
-            resource_path (str): The resource path.
-            params (dict, optional): Query string/param if any.
-            kwargs (dict, optional): Additional request detail, Ex: headers
-        
-        Returns:
-            dict: Response json.
-        """
-        return self.__send_request(
-            Constants.GET,
-            url,
-            params=params,
-            headers=headers,
-            **kwargs 
-        )
-    

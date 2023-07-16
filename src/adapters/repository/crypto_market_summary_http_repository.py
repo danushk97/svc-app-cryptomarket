@@ -78,7 +78,8 @@ class CryptoMarketSummaryHttpRepository(AbstractRepository):
         """
         url = urljoin(self.__base_url, resource_path)
         headers = self.__generate_auth_request_headers(http_method, url)
-        response_data = getattr(self.__http_client, http_method)(
+        response_data = self.__http_client.send_request(
+            http_method,
             url,
             headers=headers
         )
