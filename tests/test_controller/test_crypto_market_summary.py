@@ -32,7 +32,7 @@ def test_get_all_crypto_currency_market_summary_returns_ok_response(
     assert response_json[0] == snake_case_market_summary_dict
 
 
-def test_get_all_crypto_currency_market_summary_returns_not_ok_response_on_error_from_service(
+def test_get_all_crypto_currency_market_summary_returns_not_ok_response_on_error_from_service(  # noqa: E501
     fake_service_raises_exception, test_client
 ):
     response = test_client.get("/v3/crypto/markets/summaries")

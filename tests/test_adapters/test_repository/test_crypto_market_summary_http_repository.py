@@ -73,7 +73,7 @@ def test_get_find_by_market_given_valid_input_then_returns_data(
     assert fake_http_client.headers == expected_headers
 
 
-def test_get_find_by_market_given_invalid_summary_then_raises_external_serivce_exception(
+def test_get_find_by_market_given_invalid_summary_then_raises_external_serivce_exception(  # noqa: E501
     snake_case_market_summary_dict
 ):
     with pytest.raises(ResourceNotFoundException):

@@ -6,7 +6,7 @@ from src.constants import Constants
 @mark.parametrize(
     "input, expected", [
         # snake case should be converted to camel case
-        ("snake_case", "snakeCase"), 
+        ("snake_case", "snakeCase"),
         ("camelCase", "camelCase")
     ]
 )

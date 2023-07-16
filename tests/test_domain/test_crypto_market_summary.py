@@ -43,7 +43,7 @@ def test_from_dict_given_valid_dict_returns_instance_with_provided_values(
     )
 
 
-def test_from_dict_given_dict_with_missing_values_returns_instance_with_empty_string():
+def test_from_dict_given_dict_with_missing_values_returns_instance_with_empty_string():  # noqa: E501
     market_summary_dict = OrderedDict({
         "symbol": "1ECO-BTC",
         "high": "0.000010130000",
