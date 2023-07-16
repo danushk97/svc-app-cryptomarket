@@ -17,7 +17,8 @@ Follow this steps to set up and run the service.
 
 ## Requirements
 
-This project requires Python 3.10.* and the PIP package manager.
+This project requires [Python 3.10](https://www.python.org/downloads/release/python-3100/) 
+or higher and the [PIP](https://pip.pypa.io/en/stable/) package manager.
 
 ## Clone the repository
 
@@ -45,9 +46,10 @@ $ pip install -r requirements.txt
 $ pytest
 ```
 
-## Set ENV vars
+## Set environment variables
 
-Ensure that the below required environment variables are set in {FLASK_ENV}.env
+Ensure that the below environment variables are updated in the file
+{FLASK_ENV}.env
 
 ```console
 $ export BITTREX_API_KEY=<bittrex_api_key>
