@@ -69,6 +69,7 @@ class HttpClient:
             _logger.error(
                 failed_log_message + f"{http_err}. {http_err.response.text}"
             )
+
             if http_err.response.status_code == HTTPStatus.NOT_FOUND:
                 raise ResourceNotFoundException() from http_err
 

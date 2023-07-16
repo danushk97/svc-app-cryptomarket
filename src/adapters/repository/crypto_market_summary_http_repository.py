@@ -96,7 +96,7 @@ class CryptoMarketSummaryHttpRepository(AbstractRepository):
         """
         Generates auth request headers for communicating with Bittrex service.
 
-        This function generates auth header based on the `official 
+        This function generates auth header based on the `official
         documentation <https://bittrex.github.io/api/v3#topic-Authentication>`
 
         Args:
