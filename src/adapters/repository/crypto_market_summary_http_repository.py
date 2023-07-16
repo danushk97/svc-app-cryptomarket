@@ -124,8 +124,8 @@ class CryptoMarketSummaryHttpRepository(AbstractRepository):
         ])
         headers[Constants.API_SIGNATURE] = \
             utils.calculate_hmac_sha512_signature(
-                pre_sign, 
-                Config.BITTREX_SECRET_KEY
+                Config.BITTREX_SECRET_KEY,
+                pre_sign
             )
         
         return headers
