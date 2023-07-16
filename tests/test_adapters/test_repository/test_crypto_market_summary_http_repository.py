@@ -29,7 +29,7 @@ def expected_headers():
     return {
         "api-content-hash": "sha512_hash_value",
         "api-key": "test-key",
-        "api-signature": "200000{url}GETsha512_hash_value:test-secret",
+        "api-signature": "test-secret:200000{url}GETsha512_hash_value",
         "api-timestamp": "200000"
     }
 
