@@ -4,7 +4,8 @@ import pytest
 
 from src.adapters.repository.crypto_market_summary_http_repository import \
     CryptoMarketSummaryHttpRepository
-from src.service.crypto_market_summary_service import CryptoMarketSummaryService
+from src.service.crypto_market_summary_service import \
+    CryptoMarketSummaryService
 from src.domain.crypto_market_summary import CryptoMarketSummary
 
 
@@ -22,23 +23,14 @@ market_summary_dict = {
 @pytest.fixture()
 def fake_repository():
     fake_repo = create_autospec(
-        CryptoMarketSummaryHttpRepository, 
+        CryptoMarketSummaryHttpRepository,
         instance=True
-    )
-    args = (
-        "1ECO-BTC", 
-        "0.000010130000", 
-        "0.000009550000", 
-        "299.05366098", 
-        "0.00286879", 
-        "6.07", 
-        "2023-07-13T04:39:44.69Z"
     )
     summary = CryptoMarketSummary.from_dict(market_summary_dict)
 
     fake_repo.list.return_value = [summary]
     fake_repo.find_by_market.return_value = summary
-    
+
     yield fake_repo
 
 

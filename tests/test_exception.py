@@ -10,4 +10,4 @@ def test_app_exception_construction_returns_instance_with_deafault_init_values()
     )
     assert exception.type == "about:blank"
     assert exception.status == 500
-    assert exception.__cause__ == None
+    assert exception.__cause__ is None

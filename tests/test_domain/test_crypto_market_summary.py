@@ -4,7 +4,7 @@ from src.domain.crypto_market_summary import CryptoMarketSummary
 
 
 def assert_values(
-    crypto_market_summary: CryptoMarketSummary, 
+    crypto_market_summary: CryptoMarketSummary,
     args: list
 ) -> None:
     assert crypto_market_summary.symbol == args[0]
@@ -16,14 +16,14 @@ def assert_values(
     assert crypto_market_summary.updated_at == args[6]
 
 
-def test_instantiate_crypto_market_summary_class_returns_instance_with_values():
+def test_create_crypto_market_summary_class_returns_instance_with_values():
     args = [
-        "1ECO-BTC", 
-        "0.000010130000", 
-        "0.000009550000", 
-        "299.05366098", 
-        "0.00286879", 
-        "6.07", 
+        "1ECO-BTC",
+        "0.000010130000",
+        "0.000009550000",
+        "299.05366098",
+        "0.00286879",
+        "6.07",
         "2023-07-13T04:39:44.69Z"
     ]
 
@@ -38,7 +38,7 @@ def test_from_dict_given_valid_dict_returns_instance_with_provided_values(
         camel_case_market_summary_dict
     )
     assert_values(
-        crypto_market_summary, 
+        crypto_market_summary,
         list(camel_case_market_summary_dict.values())
     )
 
@@ -67,4 +67,3 @@ def test_to_dict_given_instance_returns_dict(
     )
     result = crypto_market_summary.to_dict()
     assert result == snake_case_market_summary_dict
-    

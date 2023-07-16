@@ -52,6 +52,7 @@ def test_get_retrieve_crypto_market_summary_returns_list_of_market_summary(
         snake_case_market_summary_dict
     )
 
+
 def test_get_find_by_market_given_valid_input_then_returns_data(
     snake_case_market_summary_dict, expected_headers
 ):

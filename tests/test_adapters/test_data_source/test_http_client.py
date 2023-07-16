@@ -1,7 +1,7 @@
 import pytest
 
 from tests.fakes.fake_requests import FakeFailureRequests, \
-    FakeSuccessRequests,FakeFailureRequestsWithHttpError
+    FakeSuccessRequests, FakeFailureRequestsWithHttpError
 from src.adapters.data_source.http_client import HttpClient
 from src.adapters.data_source.exception import ExternalServiceException, \
     ResourceNotFoundException

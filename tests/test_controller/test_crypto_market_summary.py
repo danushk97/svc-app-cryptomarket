@@ -4,7 +4,8 @@ from tests.fakes.fake_service import FakeCryptoMarketSummaryService, \
     FakeCryptoMarketSummaryServiceRaisesException
 
 
-service_path = "src.controller.crypto_market_summary.CryptoMarketSummaryService"
+service_path = \
+    "src.controller.crypto_market_summary.CryptoMarketSummaryService"
 
 
 @pytest.fixture()
@@ -66,8 +67,8 @@ def test_get_crypto_currency_market_summary_returns_404_on_resource_not_found(
     assert response.status_code == 404
     assert response_json == {
         "detail": (
-            "The requested URL was not found on the server. If you entered the "
-            "URL manually please check your spelling and try again."
+            "The requested URL was not found on the server. If you entered "
+            "the URL manually please check your spelling and try again."
         ),
         "status": 404,
         "title": "Not Found",

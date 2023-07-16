@@ -15,8 +15,8 @@ class FakeResponse:
 
     def raise_for_status(self):
         if self.status_code == 200:
-            return 
-        
+            return
+
         raise HTTPError("Error", response=self)
 
 
@@ -36,4 +36,3 @@ class FakeFailureRequestsWithHttpError(FakeSuccessRequests):
 
     def get(self, url, params=None, **kwargs):
         return FakeResponse(self.status_code)
-    
